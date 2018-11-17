@@ -20,7 +20,7 @@ satsolver = wrapper.getSatSolver()
 
 opt = A4Options()
 opt.solver = satsolver
-A = wrapper.getPrimSig("B", Attr.ABSTRACT)
+A = wrapper.getPrimSig("A", Attr.ABSTRACT)
 B = wrapper.getSimplePrimSig("B")
 A1 = wrapper.getParentPrimSig("A1", A, Attr.ONE)
 A2 = wrapper.getParentPrimSig("A2", A, Attr.ONE)
