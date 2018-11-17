@@ -1,20 +1,19 @@
-import os
-os.environ['CLASSPATH'] = "/home/dchun/Code/alloy4.jar:/home/dchun/Code/Alloy.jar"
+import sys
+sys.path.append("/home/dchun/Code/alloy4.jar:/home/dchun/Code/Alloy.jar")
 
-from jnius import autoclass
 
-A4Options = autoclass('edu.mit.csail.sdg.alloy4compiler.translator.A4Options')
-AlloyWrapper = autoclass('wrappers.AlloyWrapper')
-Attr = autoclass('edu.mit.csail.sdg.alloy4compiler.ast.Attr')
-Func = autoclass('edu.mit.csail.sdg.alloy4compiler.ast.Func')
-Command = autoclass('edu.mit.csail.sdg.alloy4compiler.ast.Command')
-ExprConstant = autoclass('edu.mit.csail.sdg.alloy4compiler.ast.ExprConstant')
-TranslateAlloyToKodkod = autoclass('edu.mit.csail.sdg.alloy4compiler.translator.TranslateAlloyToKodkod')
+from wrappers import AlloyWrapper
+from edu.mit.csail.sdg.alloy4compiler.translator import A4Options 
+from edu.mit.csail.sdg.alloy4compiler.ast import Attr 
+from edu.mit.csail.sdg.alloy4compiler.ast import Func 
+from edu.mit.csail.sdg.alloy4compiler.ast import Command 
+from edu.mit.csail.sdg.alloy4compiler.ast import ExprConstant
+from edu.mit.csail.sdg.alloy4compiler.translator import TranslateAlloyToKodkod
 
-Util = autoclass('edu.mit.csail.sdg.alloy4.Util')
+from edu.mit.csail.sdg.alloy4 import Util
 
-List = autoclass('java.util.ArrayList')
-Arrays = autoclass('java.util.Arrays')
+from java.util import ArrayList
+from java.util import Arrays
 
 wrapper = AlloyWrapper()
 satsolver = wrapper.getSatSolver()
@@ -35,7 +34,7 @@ y = wrapper.getStandardPrimSig(1).oneOf("y")
 body = x.get().plus(y.get()).cardinality().lte(ExprConstant.makeNUMBER(3))
 atMost3 = Func(None, "atMost3", Util.asList(x, y), None, body)
 
-sigs = List()
+sigs = ArrayList()
 sigs.add(A)
 sigs.add(B)
 sigs.add(A1)
