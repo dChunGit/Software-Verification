@@ -49,4 +49,19 @@ public class AlloyWrapper {
             }
         }
     }
+
+    public Attr.AttrType getAttr(int type) {
+        switch (type) {
+            case 1: {
+                return Attr.AttrType.ABSTRACT;
+            }
+            case 2: {
+                return Attr.AttrType.ONE;
+            }
+            case 3: {
+                return Attr.AttrType.LONE;
+            }
+            default: return null;
+        }
+    }
 }
