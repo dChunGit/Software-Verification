@@ -1,5 +1,5 @@
 import sys
-sys.path.append("/home/dchun/Code/alloy4.jar:/home/dchun/Code/Alloy.jar")
+sys.path.append("/home/dchun/Code/alloy4.jar:/home/dchun/Code/Alloy/out/artifacts/Alloy_jar/Alloy.jar")
 
 
 from wrappers import AlloyWrapper

@@ -1,6 +1,6 @@
 from jpype import *
 
-startJVM(getDefaultJVMPath(), "-ea", "-Djava.class.path=/home/dchun/Code/alloy4.jar:/home/dchun/Code/Alloy.jar")
+startJVM(getDefaultJVMPath(), "-ea", "-Djava.class.path=/home/dchun/Code/alloy4.jar:/home/dchun/Code/Alloy/out/artifacts/Alloy_jar/Alloy.jar")
 # A4Reporter = JClass('edu').mit.csail.sdg.alloy4.A4Reporter
 # reporter = A4Reporter()
 
@@ -37,7 +37,7 @@ y = wrapper.getStandardPrimSig(1).oneOf("y")
 body = x.get().plus(y.get()).cardinality().lte(ExprConstant.makeNUMBER(3))
 atMost3 = Func(None, "atMost3", Util.asList(x, y), None, body)
 
-sigs = ArrayList()
+sigs = List()
 sigs.add(A)
 sigs.add(B)
 sigs.add(A1)
