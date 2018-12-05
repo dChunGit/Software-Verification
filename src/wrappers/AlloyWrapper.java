@@ -1,19 +1,50 @@
 package wrappers;
+import edu.mit.csail.sdg.alloy4.ConstList;
+import edu.mit.csail.sdg.alloy4.Util;
+import py4j.GatewayServer;
 
 import edu.mit.csail.sdg.alloy4.A4Reporter;
 import edu.mit.csail.sdg.alloy4.Err;
 import edu.mit.csail.sdg.alloy4compiler.ast.*;
 import edu.mit.csail.sdg.alloy4compiler.translator.A4Options;
 
+import java.lang.management.ManagementFactory;
+import java.util.Collection;
+
 
 public class AlloyWrapper {
+    public static void main(String[] args) {
+        float currentTime = System.currentTimeMillis();
+        float startup = currentTime - ManagementFactory.getRuntimeMXBean().getStartTime();
+        System.out.println(startup);
+        AlloyWrapper app = new AlloyWrapper();
+        // app is now the gateway.entry_point
+        GatewayServer server = new GatewayServer(app);
+        server.start();
+    }
 
     public A4Reporter getNOP() {
         return A4Reporter.NOP;
     }
 
+    public A4Options getA4Options() {
+        return new A4Options();
+    }
+
+    public Expr getPrimSigCall(Func func, Sig.PrimSig a, Sig.PrimSig b) {
+        return func.call(a, b);
+    }
+
+    public ConstList<Decl> getAsList(Decl x, Decl y) {
+        return Util.asList(x, y);
+    }
+
     public Sig.PrimSig getPrimSig(String label, Attr val) throws Err {
         return new Sig.PrimSig(label, val);
+    }
+
+    public Sig.SubsetSig getSubSetSig(String label, Collection<Sig> parents, Attr... attributes) throws Err {
+        return new Sig.SubsetSig(label, parents, attributes);
     }
 
     public Sig.PrimSig getSimplePrimSig(String label) throws Err {
